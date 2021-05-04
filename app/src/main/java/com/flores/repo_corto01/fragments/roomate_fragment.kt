@@ -32,6 +32,8 @@ class RoomateFragment:Fragment(){
 
         var alumnoBox = view.findViewById<TextView>(R.id.input_roomate_text_edit)
         var textViewParejas = view.findViewById<TextView>(R.id.parejas_text_view)
+        var ingrese_alumnos_text_view = view.findViewById<TextView>(R.id.ingrese_alumnos_text_view)
+        ingrese_alumnos_text_view.text = "Ingrese Alumnos"
 
         val btnAgregar = view.findViewById<Button>(R.id.action_agregar)
         val btnMostrar = view.findViewById<Button>(R.id.action_mostrar)

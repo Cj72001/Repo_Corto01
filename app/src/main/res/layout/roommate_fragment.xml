@@ -10,13 +10,12 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/sub_red_text_view"
+        android:id="@+id/ingrese_alumnos_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/black"
-        tools:text="Datos de Alumno:" />
+        android:textColor="@color/black"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:paddingTop="16dp"
