@@ -10,7 +10,7 @@ import com.flores.repo_corto01.R
 
 class RoomateFragment:Fragment(){
     //EJ:
-    //Pedro,M,15;Omar,M,20;Lupe,F,25;Rafael,M,22;Juana,F,23;Tomas,M,17
+    //Pedro,M,15;Omar,M,20;Lupe,F,25;Rafael,M,22;Juana,F,24;Tomas,M,15
 
     private var roomate = mutableListOf<String>()
     private var roomates = mutableListOf<String>()
@@ -18,6 +18,7 @@ class RoomateFragment:Fragment(){
     private var roomateSex = mutableListOf<String>()
     private var roomateAge = mutableListOf<String>()
     private var finalRoomates = mutableListOf<String>()
+
 
 
     override fun onCreateView(
@@ -55,28 +56,39 @@ class RoomateFragment:Fragment(){
 
         btnMostrar.setOnClickListener{
 
-            roomateAge.forEach { age ->
-                roomateAge.forEach{age2 ->
-                    var conteaoAge = age.toInt() - age2.toInt()
+            val rangoDiferencia = -2..2
 
-                    //TODO: ARREGLAR EL RANGO DE EDAD (0-2)
-                    if(conteaoAge == -2 or 0 &&
-                        roomateSex[roomateAge.indexOf(age)] == roomateSex[roomateAge.indexOf(age2)])
+            for (ageIndex in 0..roomateAge.size-1)
+            {
+                for(age2Index in 0..roomateAge.size-1)
+                {
+                    var age1:Int = roomateAge[ageIndex].toInt()
+                    var age2:Int = roomateAge[age2Index].toInt()
+                    var conteaoAge = age1-age2
+
+
+                    if(conteaoAge in rangoDiferencia && roomateSex[ageIndex] == roomateSex[age2Index] && ageIndex != age2Index)
                     {
-                        var roomate1 = roomateName[roomateAge.indexOf(age)]
-                        var roomate2 = roomateName[roomateAge.indexOf(age2)]
-                        finalRoomates.add("$roomate1 y $roomate2")
+                        var roomate1 = roomateName[ageIndex]
+                        var roomate2 = roomateName[age2Index]
+
+                        if(!finalRoomates.contains("$roomate1 y $roomate2") && !finalRoomates.contains("$roomate2 y $roomate1"))
+                        {
+                            finalRoomates.add("$roomate1 y $roomate2")
+                        }
                     }
                 }
             }
 
+
             var string = ""
             string += "Parejas: \n"
             finalRoomates.forEach { nombre->
-                 string += "$nombre \n"
+                string += "$nombre \n"
             }
 
             textViewParejas.text = string
+
         }
 
 
@@ -89,6 +101,7 @@ class RoomateFragment:Fragment(){
             roomateAge.clear()
             finalRoomates.clear()
             textViewParejas.text=""
+            alumnoBox.text=""
         }
 
         return view;
